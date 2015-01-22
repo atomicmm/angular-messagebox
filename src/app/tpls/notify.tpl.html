@@ -1,0 +1,13 @@
+<div class="modal-header dialog-header-notify">
+    <button type="button" class="close" ng-click="close()">&times;</button>
+    <h4 class="modal-title text-info">
+        <span ng-class="icon"></span>
+        <span ng-bind-html="header"></span>
+    </h4>
+</div>
+<div class="modal-body text-info" ng-bind-html="msg"></div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="close()">
+        确定
+    </button>
+</div>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="angular-messagebox.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+</head>
+<body ng-controller="MsgBoxCtrl as vm">
+<button class="btn btn-danger" ng-click="vm.launch('error')">错误框</button>
+<button class="btn btn-primary" ng-click="vm.launch('wait')">进度框</button>
+<button class="btn btn-default" ng-click="vm.launch('notify')">提示框</button>
+<button class="btn btn-success" ng-click="vm.launch('confirm')">确认框</button>
+</body>
+<script src="http://cdn.bootcss.com/angular.js/1.3.8/angular.js"></script>
+<script src="http://cdn.bootcss.com/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls.js"></script>
+<script src="angular-messagebox.js"></script>
+<script>
+    angular
+            .module('app', ['ui.bootstrap', 'angular-messagebox']);
+
+    angular
+            .module('app')
+            .controller('MsgBoxCtrl', ['MessageBox', '$rootScope', '$timeout', function (MessageBox, $rootScope, $timeout) {
+                var vm = this;
+
+                vm.launch = function (type) {
+                    switch (type) {
+                        case 'error':
+                            MessageBox.error('错误信息', '错误标题');
+                            break;
+                        case 'notify':
+                            MessageBox.notify('提示信息', '提示标题');
+                            break;
+                        case 'confirm':
+                            var mbox = MessageBox.confirm('确认信息', '确认标题');
+                            mbox.result.then(function (btn) {
+                                console.log('choose: ' + btn);
+                            }, function (btn) {
+                                console.log('choose: ' + btn);
+                            });
+                            break;
+                        case 'wait':
+                            MessageBox.wait('数据加载中...', 0);
+                            fakeProgress();
+                            break;
+                    }
+                };
+
+                var progress = 25;
+                var fakeProgress = function () {
+                    $timeout(function () {
+                        if (progress < 100) {
+                            progress += 5;
+                            $rootScope.$broadcast('event:messagebox-wait-progress', {'progress': progress});
+                            fakeProgress();
+                        } else {
+                            $rootScope.$broadcast('event:messagebox-wait-complete');
+                        }
+                    }, 1000);
+                };
+
+
+            }]);
+</script>

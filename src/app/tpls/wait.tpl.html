@@ -1,0 +1,13 @@
+<div class="modal-header dialog-header-wait">
+    <h4 class="modal-title">
+        <span class="icon"></span>
+        <span ng-bind-html="header"></span>
+    </h4>
+</div>
+<div class="modal-body">
+    <p ng-bind-html="msg"></p>
+
+    <div class="progress progress-striped active">
+        <div class="progress-bar progress-bar-info" ng-style="getProgress()"></div>
+    </div>
+</div>

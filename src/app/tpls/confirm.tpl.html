@@ -1,0 +1,12 @@
+<div class="modal-header dialog-header-confirm">
+    <button type="button" class="close" ng-click="no()">&times;</button>
+    <h4 class="modal-title">
+        <span ng-class="icon"></span>
+        <span ng-bind-html="header"></span>
+    </h4>
+</div>
+<div class="modal-body" ng-bind-html="msg"></div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="yes()">确定</button>
+    <button type="button" class="btn btn-primary" ng-click="no()">取消</button>
+</div>

@@ -60,7 +60,7 @@ gulp.task('clean', function (cb) {
  */
 gulp.task('example', function () {
     gulp
-        .src('src/example.html')
+        .src('src/index.html')
         .pipe(gulp.dest(DEST));
 });
 

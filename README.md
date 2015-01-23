@@ -10,7 +10,7 @@ thanks for [angular-dialog-service](https://github.com/m-e-conroy/angular-dialog
  4. remove customer create dialog
 
 ## usage:
- demo on coding:[]()
+### demo on coding:[http://angular-messagebox.coding.io/](http://angular-messagebox.coding.io/)
 ```
 gulp clean
 gulp build
